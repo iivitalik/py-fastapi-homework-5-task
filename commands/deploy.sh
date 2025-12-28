@@ -9,7 +9,7 @@ handle_error() {
 
 PROJECT_DIR="/home/ubuntu/src/py-fastapi-homework-5-task"
 
-cd "$PROJECT_DIR" || handle_error "Failed to navigate to the application directory."
+cd "$PROJECT_DIR" || handle_error "Failed to navigate to $PROJECT_DIR"
 
 echo "Fetching the latest changes..."
 git fetch origin main || handle_error "Failed to fetch updates."
