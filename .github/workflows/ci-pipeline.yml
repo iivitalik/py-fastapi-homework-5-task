@@ -95,3 +95,4 @@ jobs:
         if: always()
         run: |
           docker compose -f docker-compose-tests.yml down
+
