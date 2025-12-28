@@ -17,10 +17,10 @@ git fetch origin main || handle_error "Git fetch failed"
 echo "Resetting repository..."
 git reset --hard origin/main || handle_error "Git reset failed"
 
-echo "Stopping old containers..."
-docker compose -f docker-compose-prod.yml -p theater down || echo "No containers to stop."
+echo "Stopping old containers and cleaning orphans..."
+docker compose -f docker-compose-prod.yml down --remove-orphans || echo "No containers to stop."
 
 echo "Building and running containers..."
-docker compose -f docker-compose-prod.yml -p theater up -d --build || handle_error "Docker compose failed"
+docker compose -f docker-compose-prod.yml up -d --build || handle_error "Failed to build containers."
 
 echo "Deployment completed successfully."
