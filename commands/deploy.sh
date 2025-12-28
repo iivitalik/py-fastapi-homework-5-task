@@ -9,18 +9,17 @@ handle_error() {
 
 PROJECT_DIR="/home/ubuntu/src/py-fastapi-homework-5-task"
 
-cd "$PROJECT_DIR" || handle_error "Failed to navigate to $PROJECT_DIR"
+cd "$PROJECT_DIR" || handle_error "Failed to navigate to the application directory."
 
-echo "Fetching changes..."
-git fetch origin main || handle_error "Git fetch failed"
+echo "Fetching the latest changes from the remote repository..."
+git fetch origin main || handle_error "Failed to fetch updates from the 'origin' remote."
 
-echo "Resetting repository..."
-git reset --hard origin/main || handle_error "Git reset failed"
+echo "Resetting the local repository to match 'origin/main'..."
+git reset --hard origin/main || handle_error "Failed to reset the local repository to 'origin/main'."
 
-echo "Updating tags..."
-git fetch origin --tags || handle_error "Git fetch tags failed"
+echo "Fetching tags from the remote repository..."
+git fetch origin --tags || handle_error "Failed to fetch tags from the 'origin' remote."
 
-echo "Restarting containers..."
-docker compose -f docker-compose-prod.yml up -d --build || handle_error "Docker compose failed"
+docker compose -f docker-compose-prod.yml up -d --build || handle_error "Failed to build and run Docker containers."
 
 echo "Deployment completed successfully."
